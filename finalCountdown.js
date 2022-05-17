@@ -79,8 +79,8 @@ weekdays = [
 //adds 'st', 'nd', 'rd', 'th' depending on the last digit
 nth (somedate){
   const number  = somedate.toString()
-  const ordinal = {"1$":'st', "2$":'nd', "3$":'rd', "[4-9]$|0$":'th'}
-  for (var key in ordinal) if (number.match(key)!=null) return ordinal[key]
+  const ordinal = {"[^1]1$|^1$":'st', "[^1]2$|^2$":'nd', "[^1]3$|^3$":'rd', "[0-9]|0$":'th'}
+  for (var key in ordinal) if (number.match(key)!=null) {return ordinal[key]}
 }
 
 addZero (number) {

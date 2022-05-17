@@ -4,17 +4,11 @@
 
 class finalCountdown {
   constructor(four_item_nodelist, ...date_placeholder){
-    // const list = [...date_placeholder]
 
-    this.date_placeholder = date_placeholder
 
     ///↓↓↓↓
     const instance = this
     ///↑↑↑↑
-
-    console.log(date_placeholder.length);
-    // // console.log(date_placeholder);
-    // console.log(list);
 
     switch (date_placeholder.length) {
       case 3:
@@ -22,15 +16,6 @@ class finalCountdown {
 
         break;
       case 6:
-      // console.log(date_placeholder, date_placeholder.length);
-
-      //Output HTML element
-      // this.four_item_nodelist = four_item_nodelist
-      console.log(four_item_nodelist);
-
-      console.log(this.date_placeholder);
-      // const bd = [2020, 1, 30]
-
       // Year:2000, Month:0-11, Day:1-30, Hour:0-24, Mins:60, Secs:60
       this.futureDate = new Date(date_placeholder[0], date_placeholder[1], date_placeholder[2], date_placeholder[3], date_placeholder[4], date_placeholder[5])
       console.log(this.futureDate);
@@ -49,28 +34,21 @@ class finalCountdown {
       //futureDate expresed as ms since: Jan 1, 1970 00:00:00 (ECMAScript epoch)
       this.future_time = this.futureDate.getTime()
 
-      //Today LOL
-      // this.today = new Date().getTime()
-
       //Time left in ms: calculated WHEN instance is created
       this.t =   this.futureDate - this.today
-
-      //idea is to write a message when due date arrives!
-      this.halt = function(){if (this.p<0) { console.log(`countdown halted!`); clearInterval(this.countdown) }}
-
-      //renders countdown in html output target {four_item_nodelist}
-      this.showCountDown = function(){
-        console.log('lel');
-        four_item_nodelist.forEach(function(item, index){item.innerHTML = instance.time_left[index] ; instance.halt()}) //; console.log(instance.addZero(instance.time_left[index]))
-      }
-
-      //this keeps updating HTML element every second //Works 10/10 #############
-      this.countdown = setInterval(this.showCountDown, 1000)
-      // this.gameover = setTimeout(function(){clearInterval(instance.countdown)}, instance.t-50)
-
-
       break;
     }
+    //idea is to write a message when due date arrives!
+    this.halt = function(){ if (this.p<1000) { console.log(`countdown halted!`); clearInterval(this.countdown) }}
+
+    //renders countdown in html output target {four_item_nodelist}
+    this.showCountDown = function(){
+      console.log('lel');
+      four_item_nodelist.forEach(function(item, index){ instance.halt(); item.innerHTML = instance.addZero(instance.time_left[index]) }) //; console.log(instance.addZero(instance.time_left[index]))
+    }
+
+    //this keeps updating HTML element every second //Works 10/10 #############
+    this.countdown = setInterval(this.showCountDown, 1000)
   }
 
   months = [
@@ -101,8 +79,8 @@ class finalCountdown {
   //adds 'st', 'nd', 'rd', 'th' depending on the last digit
   nth (somedate){
     const number  = somedate.toString()
-    const ordinal = {"1$":'st', "2$":'nd', "3$":'rd', "[4-9]$|0$":'th'}
-    for (var key in ordinal) if (number.match(key)!=null) return ordinal[key]
+    const ordinal = {"[^1]1$|^1$":'st', "[^1]2$|^2$":'nd', "[^1]3$|^3$":'rd', "[0-9]|0$":'th'}
+    for (var key in ordinal) if (number.match(key)!=null) {return ordinal[key]}
   }
 
   addZero (number) { return (number<10) ? `0${number}` : `${number}` }
@@ -135,12 +113,12 @@ class finalCountdown {
 
 
 
-//Selectors
+// Selectors
 const giveaway = document.querySelector('.giveaway') // a date. i.e.:Jan 30th, 2023
 const deadline_items = document.querySelectorAll('.deadline-format h4') //i.e.: days, hours, mins, secs
 
 // const newdates = new finalCountdown(deadline_items, 2022, 5, 13, 18, 49, 00)
-const newdates = new finalCountdown(deadline_items, 2022, 04, 15, 19, 29, 00)
+const newdates = new finalCountdown(deadline_items, 2022, 04, 16, 21, 27, 19)
 giveaway.textContent = `Giveaway ends on ${newdates.legend}`
 
 //### 2022, 6, 3, 22, 0, 0 si funciona
@@ -150,76 +128,41 @@ giveaway.textContent = `Giveaway ends on ${newdates.legend}`
 // minimal example:
 const placeholder = document.querySelectorAll('.duedate')
 const label = document.querySelector('.label')
-const nextBD = new finalCountdown(placeholder, 2022, 06, 04, 23, 55, 00)
+const nextBD = new finalCountdown(placeholder, 2023, 00, 30, 11, 11, 11)
 label.textContent = `Chico's BD ${nextBD.legend}`
-// setInterval(newdates.showCountDown, 1000)
-
-
-
-// ### Testing ###
-// console.log(newdates.weekdays); //expected 2022
-// console.log(newdates.time_left[3]);
-// console.log(newdates.isOver)
-// console.log(newdates.instance);
-
-// const nextBD = new finalCountdown(placeholder, 2023, 0, 30, 11, 00, 00)
 
 
 
 
 
 
-//161
 
 
+
+// select a div. add to it 4-divs already styled.
+// genericDiv.style.display = 'flex'
 
 
 //
-// let somelist = [2023, 0, 30, 11, 00, 00]
+// <div class="deadline" style="display: flex;">
 //
-
-
-
-
-
-
-
-
-
-
-
-
-//↓gets triggered on event
-// function faceass(){
-// return new object(param1, param2)
+//   <div class="deadline-format" style="background:hsl(209, 61%, 16%); color:#fff; margin-right:1rem; width:5rem; height:5rem; display:grid; place-items:center; text-align:center;">
+//     <h4 class='days' style="font-size: 0.875rem;"> </h4>
+//     <spa>days</span>
+//   </div>
 //
+//   <div class='deadline-format' style="background:hsl(209, 61%, 16%); color:#fff; margin-right:1rem; width:5rem; height:5rem; display:grid; place-items:center; text-align:center;">
+//     <h4 class="hours" style="font-size: 0.875rem;"> </h4>
+//     <span>hours</span>
+//   </div>
 //
-//}
-
-
-
-
-
-
-
-
-
-
-
-// // this getter works fine a s well! #########
-// get fin (){
-//   const countdown = setInterval(this.showCountDown, 1000)
-//   const gayover = setTimeout(function(){clearInterval(countdown)}, this.t-50)
-//   console.log(this.t-100);
-// }
-
-
-// this.timer = function (){
-//   const countdown = setInterval(instance.showCountDown, 1000)
-//   const gayover = setTimeout(function(){clearInterval(countdown)}, instance.t-50)
-//   console.log(instance.t-100);
-// }
-
-
-// newdates.timer()  // it works!! 100% // if wrapped within a func, timer. otherwise, just countdown
-// newdates.fin
+//   <div class="deadline-format" style="background:hsl(209, 61%, 16%); color:#fff; margin-right:1rem; width:5rem; height:5rem; display:grid; place-items:center; text-align:center;">
+//     <h4 class='mins' style="font-size: 0.875rem;"> </h4>
+//     <span>mins</span>
+//   </div>
+//
+//   <div class="deadline-format" style="background:hsl(209, 61%, 16%); color:#fff; margin-right:1rem; width:5rem; height:5rem; display:grid; place-items:center; text-align:center;">
+//     <h4 class='secs' style="font-size: 0.875rem;"> </h4>
+//     <span>secs</span>
+//   </div>
+// </div>
