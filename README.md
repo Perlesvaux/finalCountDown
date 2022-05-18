@@ -1,4 +1,4 @@
-# finalCSimplified.js
+# ffcountdown.js
 **finalCountdown** is an easy to use (fire-and-forget) countdown class ⏳
 
 ## parameters
