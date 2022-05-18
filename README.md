@@ -1,19 +1,19 @@
-#finalCSimplified.js
+# finalCSimplified.js
 Easy to use fire-and-forget countdown class.
 
-#Setup
-##parameters
+# Setup
+## parameters
 1. an HTML element
 2. a future date.
 
-##Selectors
+## Selectors
 1. An empty **div**
 >This will render the *Days*, *Hours*, *Mins* & *Secs* left (required)
 
 2. Another empty **div**
 >This will display the *due date* (optional)
 
-##Future date format
+## Future date format
 -it can be entered as 3-comma-separated-numbers
 >2030, 0, 30 //2030, Jan 30th.
 
@@ -22,7 +22,7 @@ Easy to use fire-and-forget countdown class.
 
 Year:2000, Month:0-11, Day:1-30, Hour:0-24, Mins:60, Secs:60
 
-###Minimal example
+### Minimal example
 in <HTML>:
 ```
 <div id="timer"></div>
