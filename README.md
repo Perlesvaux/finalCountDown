@@ -26,14 +26,18 @@ timeLeft.msg = `HBD!🎂🎊🎉` //Customizing message that pops up when time i
 ```
 
 Pieced together
-```markup,javascript
+```markup
     <div id="timer"></div>
-     <div id="duedate"></div>
-     <script src="./ffcountdown.js" ></script> 
-     <script>
-         const display = document.getElementById('timer')
-         const timeLeft = new finalCountdown(display, 2030, 08, 22, 4, 20, 00) /
-     </script>
+    <div id="duedate"></div>
+    <script src="./ffcountdown.js" ></script> 
+    <script>
+```
+```javascript
+        const display = document.getElementById('timer')
+        const timeLeft = new finalCountdown(display, 2030, 08, 22, 4, 20, 00)
+```
+```markup
+    </script>
 ```
 
 ## Selectors
