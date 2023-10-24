@@ -25,18 +25,14 @@ duedate.textContent = timeLeft.legend //displaying deadline on *duedate* element
 timeLeft.msg = `HBD!🎂🎊🎉` //Customizing message that pops up when time is over.
 ```
 
-Pieced together
-```markup
+**Pieced together**
+```HTML
     <div id="timer"></div>
     <div id="duedate"></div>
     <script src="./ffcountdown.js" ></script> 
     <script>
-```
-```javascript
         const display = document.getElementById('timer')
         const timeLeft = new finalCountdown(display, 2030, 08, 22, 4, 20, 00)
-```
-```markup
     </script>
 ```
 
