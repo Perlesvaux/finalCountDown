@@ -26,7 +26,7 @@ timeLeft.msg = `HBD!🎂🎊🎉` //Customizing message that pops up when time i
 ```
 
 Pieced together
-```markup
+```markup,javascript
     <div id="timer"></div>
      <div id="duedate"></div>
      <script src="./ffcountdown.js" ></script> 
